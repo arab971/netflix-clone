@@ -1,6 +1,7 @@
 import { Link,  useNavigate } from "react-router-dom";
 import { useState } from "react";
-//  import ChevronRight from "lucide-react"
+import { ChevronRight } from "lucide-react";
+
 const AuthScreen = () => {
   const navigate = useNavigate()
   const navigateemail = (e) => {
@@ -35,7 +36,8 @@ const AuthScreen = () => {
         />
         <button className='bg-red-600 text-xl lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded flex justify-center items-center'>
           Get Started
-          {/* <ChevronRight className='size-8 md:size-10' /> */}
+		  <ChevronRight className='size-8 md:size-10' />
+         
         </button>
       </form>
     </div>

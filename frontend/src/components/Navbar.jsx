@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
-
+import { LogOut, Menu, Search } from "lucide-react";
 import { useState } from "react";
+import { useAuthStore } from "../store/authUser";
+import { contentstore } from "../store/content";
 const Navbar = () => {
+  const { contentType, setconentType } = contentstore();
+  const { logout } = useAuthStore();
   const [openmen, setopenmen] = useState(false);
+  console.log("contentType", contentType);
   const togglemen = () => {
     setopenmen(!openmen);
   };
@@ -18,10 +23,18 @@ const Navbar = () => {
           />
         </Link>
         <div className="hidden sm:flex items-center gap-2">
-          <Link to="/" className="hover:underline">
+          <Link
+            to="/"
+            className="hover:underline"
+            onClick={() => setconentType("movie")}
+          >
             Movies
           </Link>
-          <Link to="/" className="hover:underline">
+          <Link
+            to="/"
+            className="hover:underline"
+            onClick={() => setconentType("tv")}
+          >
             Tv Shows
           </Link>
           <Link to="/history" className="hover:underline">
@@ -29,7 +42,20 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      <div className=""></div>
+      <div className="flex gap-2 items-center z-50">
+        <Link to={"/search"}>
+          <Search className="size-6 cursor-pointer" />
+        </Link>
+        <img
+          src="https://i.pravatar.cc/300"
+          alt="avatar"
+          className="h-8 cursor-pointer rounded"
+        />
+        <LogOut className="size-6 cursor-pointer" onClick={logout} />
+        <div className="sm:hidden">
+          <Menu className="size-6 cursor-pointer " onClick={togglemen} />
+        </div>
+      </div>
       {openmen && (
         <div className="w-full sm:hidden mt-4 z-50 bg-black border rounded border-gray-800">
           <Link
