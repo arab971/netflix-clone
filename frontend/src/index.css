@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.bg-img{
+  background-image:linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("hero.png");
+  filter: brightness(1.2);
+}
