@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar.jsx";
-import { Info, Play } from "lucide-react";
+// import { Info, Play } from "lucide-react";
 
 const HomeScreen = () => {
   return (
@@ -36,7 +36,7 @@ const HomeScreen = () => {
 							className='bg-white hover:bg-white/80 text-black font-bold py-2 px-4 rounded mr-4 flex
 							 items-center'
 						>
-							<Play className='size-6 mr-2 fill-black' />
+							{/* <Play className='size-6 mr-2 fill-black' /> */}
 							Play
 						</Link>
 
@@ -44,7 +44,7 @@ const HomeScreen = () => {
 							to={`/watch`}
 							className='bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded flex items-center'
 						>
-							<Info className='size-6 mr-2' />
+							{/* <Info className='size-6 mr-2' /> */}
 							More Info
 						</Link>
 					</div>

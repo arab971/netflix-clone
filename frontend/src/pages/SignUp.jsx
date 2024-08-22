@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuthStore } from "../store/authUser";
+import { authUserStore } from "../store/authUser";
 const SignUp = () => {
   const { searchParams } = new URL(document.location);
   const emailvalue = searchParams.get("email");
   const [email, setemail] = useState(emailvalue || "");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const {  signup,isSigningUp } = useAuthStore();
+
+  const { signup } = authUserStore();
+
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -80,7 +82,7 @@ const SignUp = () => {
               </div>
               <button
                 className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-                disabled={isSigningUp}
+                // disabled={issignup}
               >
                 Sign Up
               </button>

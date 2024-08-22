@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { LogOut, Menu, Search } from "lucide-react";
 import { useState } from "react";
-import { useAuthStore } from "../store/authUser";
+// import { useAuthStore } from "../store/authUser";
 import { contentstore } from "../store/content";
 const Navbar = () => {
   const { contentType, setconentType } = contentstore();
-  const { logout } = useAuthStore();
+  // const { signup } = useAuthStore();
   const [openmen, setopenmen] = useState(false);
   console.log("contentType", contentType);
   const togglemen = () => {
@@ -51,7 +51,7 @@ const Navbar = () => {
           alt="avatar"
           className="h-8 cursor-pointer rounded"
         />
-        <LogOut className="size-6 cursor-pointer" onClick={logout} />
+        <LogOut className="size-6 cursor-pointer"  /> 
         <div className="sm:hidden">
           <Menu className="size-6 cursor-pointer " onClick={togglemen} />
         </div>

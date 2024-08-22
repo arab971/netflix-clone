@@ -1,6 +1,6 @@
 import AuthScreen from "./AuthScreen";
 import HomeScreen from "./HomeScreen";
-const user = true;
+const user = false;
 
 const Home = () => {
   return (
