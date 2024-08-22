@@ -79,10 +79,10 @@ export const searchmovie = async (req, res) => {
   }
 };
 export const getsearchhistory = async (req, res) => {
-  
+
   try {
-    // await User.findOne(req.userId).select(`searchHistory`);
-    res.status(200).json({ success: true, content: req.userId.searchHistory });
+    await User.findOneAndUpdate(req.userId).select(`searchHistory`);
+    res.status(200).json({ success: true, content: req.userId });
   } catch (error) {
     console.log("error in getsearchhistory controller", error.message);
     res.status(500).json({ success: false, message: error.message});
