@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import axios from "axios";
 import toast from "react-hot-toast";
+import axios from "axios";
 export const authUserStore = create((set) => ({
   user: null,
   issignup: false,
@@ -8,13 +8,20 @@ export const authUserStore = create((set) => ({
     set({ issigningup: true });
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/auth/signup",
-        credentials
+       `http://localhost:3000/api/auth/signup`,
+       credentials
+
       );
-      set({ user: response.data.user, issignup: false });
-      toast.success("Account created successfully");
+      set({ user: response.data.user});
+      toast.success("Account created successfully",{issigningup:false});
     } catch (error) {
-      toast.error(error.message || "Signup failed");
+      if (error.response) {
+        toast.error(error.response.data.message || "Signup failed");
+      } else if (error.request) {
+        toast.error("Network error: No response from server");
+      } else {
+        toast.error(error.message || "Signup failed");
+      }
       set({ isSigningUp: false, user: null });
     }
   },

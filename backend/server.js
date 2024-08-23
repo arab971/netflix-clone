@@ -8,8 +8,9 @@ import tvRoutes from "./routes/tv.router.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import env from "dotenv";
+import cors from "cors";
 const app = express();
-
+app.use(cors({ origin: 'http://localhost:3000' }));
 env.config();
 app.use(cookieParser());
 app.use(bodyParser.json());
