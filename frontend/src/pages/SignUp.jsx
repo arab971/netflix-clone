@@ -8,7 +8,7 @@ const SignUp = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
 
-  const { signup,isSignup } = useAuthStore()
+  const { signup,isSigningUp } = useAuthStore()
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -58,7 +58,7 @@ const SignUp = () => {
                   id="username"
                   className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring
         "
-                  placeholder="muhammadarab"
+                  placeholder="Enter name "
                   value={username}
                   onChange={(e) => setusername(e.target.value)}
                 />
@@ -75,16 +75,16 @@ const SignUp = () => {
                   id="password"
                   className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring
         "
-                  placeholder="********"
+                  placeholder="Enter Password"
                   value={password}
                   onChange={(e) => setpassword(e.target.value)}
                 />
               </div>
               <button
                 className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-                disabled={isSignup}
+                disabled={isSigningUp}
               >
-                {isSignup ? "Loading..." : "Sign Up"}
+                {isSigningUp ? "Loading..." : "Sign Up"}
                 {/* Sign Up */}
               </button>
             </form>

@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { LogOut, Menu, Search } from "lucide-react";
 import { useState } from "react";
-// import { useAuthStore } from "../store/authUser";
-import { contentstore } from "../store/content";
+import { useAuthStore } from "../store/authUser";
+import contentstore  from "../store/content.js";
+import TrendingData from "../hook/TrendingData.jsx";
 const Navbar = () => {
-  const { contentType, setconentType } = contentstore();
-  // const { signup } = useAuthStore();
+  const {  logout } = useAuthStore();
+  const { setconentType } = contentstore();
   const [openmen, setopenmen] = useState(false);
-  console.log("contentType", contentType);
+  const {trendingContent} = TrendingData();
+  console.log("trendingContent",trendingContent)
   const togglemen = () => {
     setopenmen(!openmen);
   };
@@ -51,7 +53,7 @@ const Navbar = () => {
           alt="avatar"
           className="h-8 cursor-pointer rounded"
         />
-        <LogOut className="size-6 cursor-pointer"  /> 
+        <LogOut className="size-6 cursor-pointer" onClick={logout} /> 
         <div className="sm:hidden">
           <Menu className="size-6 cursor-pointer " onClick={togglemen} />
         </div>

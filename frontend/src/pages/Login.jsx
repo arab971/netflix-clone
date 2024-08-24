@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useAuthStore } from "../store/authUser.js"
 const Login = () => {
+  const {login,isLoggingIn} = useAuthStore()
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
   const handleLogin = (e) => {
     e.preventDefault()
-    console.log(email, password)
+    login({email,password})
+    // console.log(email, password)
   }
   return (
     <>
@@ -52,13 +55,13 @@ const Login = () => {
                   id="password"
                   className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring
         "
-                  placeholder="********"
+                  placeholder="Enter Password"
                   value={password}
                   onChange={(e) => setpassword(e.target.value)}
                 />
               </div>
-              <button className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
-               Login
+              <button className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded" onClick={login}>
+              {isLoggingIn ? "Loading..." : "Log In"}
               </button>
             </form>
             <div className="text-center text-gray-400">

@@ -9,7 +9,7 @@ env.config();
 		const token = req.cookies["netflix_cookie"];
 
 		if (!token) {
-			return res.status(401).json({ success: false, message: "Unauthorized - No Token Provided" });
+			return res.status(401).json({ success: false, message: "Unauthorized - Need to login or signup first" });
 		}
 
 		
@@ -25,9 +25,6 @@ env.config();
 			 res.status(404).json({ success: false, message: "User not found" });
 			 return null;
 		}
-		
-  
-
 		
 
 		next();
