@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { authUserStore } from "../store/authUser";
+import { useAuthStore } from "../store/authUser.js";
 const SignUp = () => {
   const { searchParams } = new URL(document.location);
   const emailvalue = searchParams.get("email");
@@ -8,12 +8,12 @@ const SignUp = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
 
-  const { signup } = authUserStore();
-
+  const { signup,isSignup } = useAuthStore()
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    signup({ email, username, password });
+   
+		await signup({ email, password,username });
   };
   return (
     <>
@@ -82,15 +82,16 @@ const SignUp = () => {
               </div>
               <button
                 className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-                // disabled={issignup}
+                disabled={isSignup}
               >
-                Sign Up
+                {isSignup ? "Loading..." : "Sign Up"}
+                {/* Sign Up */}
               </button>
             </form>
             <div className="text-center text-gray-400">
               Already have an account{" "}
               <Link to={"/login"} className="text-red-700 hover:underline">
-                Sign In
+                Login
               </Link>
             </div>
           </div>

@@ -10,7 +10,7 @@ import bodyParser from "body-parser";
 import env from "dotenv";
 import cors from "cors";
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors());
 env.config();
 app.use(cookieParser());
 app.use(bodyParser.json());

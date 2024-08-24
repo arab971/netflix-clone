@@ -54,7 +54,7 @@ export async function SignUp(req, res) {
       username,
       image,
     });
-    generateToken(User._id, res);
+    generateToken(newUser._id, res);
 
     await newUser.save();
     res
