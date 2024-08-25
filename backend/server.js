@@ -18,14 +18,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/movie",protectionRoutes, movieRoutes);
-app.use("/api/v1/tv", protectionRoutes, tvRoutes);
-app.use("/api/v1/search", protectionRoutes, searchRoutes);
+app.use("/api/v1/movie", movieRoutes); //put protection route hare if this will create problem for us
+app.use("/api/v1/tv", tvRoutes);
+app.use("/api/v1/search",  searchRoutes);
 
 app.listen(port, (req, res) => {
   console.log(`http://localhost:${port}`);

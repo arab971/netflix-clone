@@ -1,20 +1,23 @@
-import {   Navigate, Route, Routes } from "react-router-dom"
-import Home from "./pages/home/Home.jsx"
-import Login from "./pages/Login.jsx"
-import SignUp from "./pages/SignUp.jsx"
-import { Toaster } from "react-hot-toast"
-import Footer from "./components/Footer.jsx"
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/home/Home.jsx";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
+import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer.jsx";
 import { useAuthStore } from "./store/authUser.js";
 import { useEffect } from "react";
-import { Loader } from "lucide-react"
+import { Loader } from "lucide-react";
+import WatchPage from "./pages/WatchPage.jsx"
 
 function App() {
-  const {user, authCheck,isCheckingAuth } = useAuthStore();
+  const { user, authCheck, isCheckingAuth } = useAuthStore();
 
+ 
 	useEffect(() => {
 		authCheck();
 	}, [authCheck]);
-  if (isCheckingAuth) {
+
+	if (isCheckingAuth) {
 		return (
 			<div className='h-screen'>
 				<div className='flex justify-center items-center bg-black h-full'>
@@ -23,19 +26,27 @@ function App() {
 			</div>
 		);
 	}
-  return (
-   <>
-   <Routes>
-    <Route path="/" element={<Home/>}/>
-    <Route path="/login" element={!user ? <Login /> : <Navigate to={"/"} />}/>
-    <Route path="/signup" element={!user ? <SignUp /> : <Navigate to={"/"} />}/>
-   </Routes>
-   <Footer/>
-   <Toaster/>
-    
 
-   </>
-  )
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to={"/"} />}
+        />
+
+        <Route
+          path="/signup"
+          element={!user ? <SignUp /> : <Navigate to={"/"} />}
+        />
+        <Route path='/watch/:id' element={user ? <WatchPage/> : <Navigate to={"/login"} />} />
+      </Routes>
+      <Footer />
+      <Toaster />
+    </>
+  );
 }
 
-export default App
+export default App;

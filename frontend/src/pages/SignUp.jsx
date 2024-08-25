@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authUser.js";
 const SignUp = () => {
   const { searchParams } = new URL(document.location);
@@ -9,11 +10,11 @@ const SignUp = () => {
   const [password, setpassword] = useState("");
 
   const { signup,isSigningUp } = useAuthStore()
-
+const navigate = useNavigate()
   const handleSignup = async (e) => {
     e.preventDefault();
    
-		await signup({ email, password,username });
+		await signup({ email, password,username },navigate);
   };
   return (
     <>

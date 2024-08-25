@@ -4,12 +4,12 @@ import HomeScreen from "./HomeScreen";
 
 const Home = () => {
   // const {user} =true
-  const {user } = useAuthStore();
+  const { user } = useAuthStore();
   
   return (
     <>
-      <div>{user ? <HomeScreen /> : <AuthScreen />}
-   
+      <div>
+        { user ? <HomeScreen /> : <AuthScreen />}
       </div>
 
     </>
