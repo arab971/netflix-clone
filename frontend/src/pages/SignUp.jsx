@@ -86,7 +86,7 @@ const navigate = useNavigate()
                 disabled={isSigningUp}
               >
                 {isSigningUp ? "Loading..." : "Sign Up"}
-                {/* Sign Up */}
+               
               </button>
             </form>
             <div className="text-center text-gray-400">

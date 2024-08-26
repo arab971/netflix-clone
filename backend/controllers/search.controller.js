@@ -82,12 +82,13 @@ export const getsearchhistory = async (req, res) => {
 
   try {
     await User.findOneAndUpdate(req.userId).select(`searchHistory`);
-    res.status(200).json({ success: true, content: req.userId });
+    res.status(200).json({ success: true,   content: req.user.searchHistory   });
   } catch (error) {
     console.log("error in getsearchhistory controller", error.message);
-    res.status(500).json({ success: false, message: error.message});
+    res.status(500).json({ success: false, message: "helle"});
   }
 };
+
 export const deletesearchhistory = async (req, res) => {
  let id = req.params;
  id = parseInt(id)
