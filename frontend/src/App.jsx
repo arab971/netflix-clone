@@ -3,7 +3,7 @@ import Home from "./pages/home/Home.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import { Toaster } from "react-hot-toast";
-import Footer from "./components/Footer.jsx";
+// import Footer from "./components/Footer.jsx";
 import { useAuthStore } from "./store/authUser.js";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
@@ -50,7 +50,7 @@ function App() {
         <Route path='/history' element={user ? <SearchHistoryPage/> : <Navigate to={"/login"} />} />
         <Route path='/*' element={<NotFoundPage/>} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster />
     </>
   );
