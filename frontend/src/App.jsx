@@ -17,12 +17,7 @@ function App() {
 
  
 	useEffect(() => {
-  const authChecker = async () => {
-    // e.preventDefault();
-    authCheck();
-  }
-  
-authChecker()
+  authCheck();
   
   }, [authCheck]);
   

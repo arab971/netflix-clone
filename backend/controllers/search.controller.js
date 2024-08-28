@@ -79,28 +79,36 @@ export const searchmovie = async (req, res) => {
   }
 };
 export const getsearchhistory = async (req, res) => {
-
+  const userId = await req.params.userId;
   try {
-    await User.findOneAndUpdate(req.userId).select(`searchHistory`);
-    res.status(200).json({ success: true,   content: req.user.searchHistory   });
+    const user = await User.findOne(userId).select(`searchHistory`);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, content: user.searchHistory });
   } catch (error) {
     console.log("error in getsearchhistory controller", error.message);
-    res.status(500).json({ success: false, message: "helle"});
+    res.status(500).json({ success: false, message: "hello" });
   }
 };
 
-export const deletesearchhistory = async (req, res) => {
- let id = req.params;
- id = parseInt(id)
-  try {
-    await User.findOneAndDelete(req.userId, {
-      $pull: {
-        searchHistory: { id: id },
-      },
-    });
-    res.status(200).json({ success: true, content: "deleted successfully" });
-  } catch (error) {
-    console.log("error in deletesearchhistory controller", error.message);
-    res.status(500).json({ success: false, message: error.message});
-  }
-};
+export async function deletesearchhistory(req, res) {
+	let { id } = req.params;
+
+	id = parseInt(id);
+
+	try {
+		await User.findOneAndUpdate(req.userId, {
+			$pull: {
+				searchHistory: { id: id },
+			},
+		});
+
+		res.status(200).json({ success: true, message: "Item removed from search history" });
+	} catch (error) {
+		console.log("Error in removeItemFromSearchHistory controller: ", error.message);
+		res.status(500).json({ success: false, message: "Internal Server Error" });
+	}
+}

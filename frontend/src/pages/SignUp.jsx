@@ -84,7 +84,7 @@ const navigate = useNavigate()
               <button
                 className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
                 disabled={isSigningUp}
-              >
+                >
                 {isSigningUp ? "Loading..." : "Sign Up"}
                
               </button>

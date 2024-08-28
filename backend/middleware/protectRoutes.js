@@ -18,7 +18,6 @@ env.config();
 		if (!decoded) {
 			return res.status(401).json({ success: false, message: "Unauthorized - Invalid Token" });
 		}
-
 		const data = await User.findOne(decoded.userId).select("-password");
 		
 		if (!data) {
@@ -27,7 +26,7 @@ env.config();
 		}
 		
 
-		next();
+		next();	
 	} catch (error) {
 		console.log("Error in protectRoute middleware: ", error.message);
 		res.status(500).json({ success: false, message: "Internal Server Error" });

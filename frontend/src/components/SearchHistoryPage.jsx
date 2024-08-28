@@ -54,14 +54,27 @@ const SearchHistoryPage = () => {
 
   const handleDelete = async (entry) => {
     try {
-      await axios.delete(
-        `http://localhost:3000/api/v1/search/deletehistory/${entry.id}`
+      if (!entry || !entry.id) {
+        throw new Error("Invalid entry or entry.id");
+    }
+    const response =  await axios.delete(
+        `http://localhost:3000/api/v1/search/deletehistory/:${entry.id}`
       );
+      if (response.status !== 200) {
+        throw new Error(`Delete request failed with status code ${response.status}`);
+    }
+    console.log("Before state update:", searchHistory); // Add this line for debugging
+ 
+      toast.success("Search item deleted successfully");
       setSearchHistory(searchHistory.filter((item) => item.id !== entry.id));
+      console.log("After state update:", searchHistory); // Add this line for debugging
+      console.log("Error response:", response); // Log the entire response object
     } catch (error) {
-      toast.error("Failed to delete search item:", error.message);
+      toast.error("Failed to delete search item:");
+      console.log(error.message)
     }
   };
+  
 
   if (searchHistory?.length === 0) {
     return (
