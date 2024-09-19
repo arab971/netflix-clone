@@ -25,7 +25,7 @@ const WatchPage = () => {
 	useEffect(() => {
 		const getTrailers = async () => {
 			try {
-				const res = await axios.get(`http://localhost:3000/api/v1/${contentType}/${id}/trailers`);
+				const res = await axios.get(`http://localhost:5000/api/v1/${contentType}/${id}/trailers`);
 				setTrailers(res.data.trailers);
                 console.log(trailers)
 			} catch (error) {
@@ -54,7 +54,7 @@ const WatchPage = () => {
 	useEffect(() => {
 		const getContentDetails = async () => {
 			try {
-				const res = await axios.get(`http://localhost:3000/api/v1/${contentType}/${id}/details`);
+				const res = await axios.get(`http://localhost:5000/api/v1/${contentType}/${id}/details`);
 				setContent(res.data.content);
 			} catch (error) {
 				if (error.message.includes("404")) {

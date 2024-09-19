@@ -9,12 +9,12 @@ const useGetTrendingContent = () => {
 	useEffect(() => {
 	 const getTrendingContent = async () => {
       if(contentType==="movie"){
-        const res = await axios.get(`http://localhost:3000/api/v1/movie/trending`);
+        const res = await axios.get(`http://localhost:5000/api/v1/movie/trending`);
         setTrendingContent(res.data.content);
 
       }
       if(contentType==="tv"){
-        const res = await axios.get(`http://localhost:3000/api/v1/tv/trending`);
+        const res = await axios.get(`http://localhost:5000/api/v1/tv/trending`);
         setTrendingContent(res.data.content);
       }
 		};

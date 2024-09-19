@@ -40,7 +40,7 @@ const SearchHistoryPage = () => {
     const getSearchHistory = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/v1/search/history`
+          `http://localhost:5000/api/v1/search/history`
         );
         setSearchHistory(res.data.content);
       } catch (error) {
@@ -58,7 +58,7 @@ const SearchHistoryPage = () => {
         throw new Error("Invalid entry or entry.id");
     }
     const response =  await axios.delete(
-        `http://localhost:3000/api/v1/search/deletehistory/:${entry.id}`
+        `http://localhost:5000/api/v1/search/deletehistory/:${entry.id}`
       );
       if (response.status !== 200) {
         throw new Error(`Delete request failed with status code ${response.status}`);

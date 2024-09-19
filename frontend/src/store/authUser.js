@@ -12,7 +12,7 @@ export const useAuthStore = create((set) => ({
 	signup: async (credentials,navigate) => {
 		set({ isSigningUp: true });
 		try {
-			const response = await axios.post("http://localhost:3000/api/v1/auth/signup", credentials);
+			const response = await axios.post("http://localhost:5000/api/v1/auth/signup", credentials);
 			set({ user: response.user, isSigningUp: false });
 			toast.success("Account created successfully");
 		navigate("/");
@@ -24,20 +24,20 @@ export const useAuthStore = create((set) => ({
 	login: async (credentials) => {
 		set({ isLoggingIn: true });
 		try {
-			const response = await axios.post("http://localhost:3000/api/v1/auth/login", credentials);
+			const response = await axios.post("http://localhost:5000/api/v1/auth/login", credentials);
 			const token = response.data.token;
 			localStorage.setItem("authToken", token);
 			set({ user: response.data.user, isLoggingIn: false });
 		} catch (error) {
 			set({ isLoggingIn: false, user: null });
 			console.log(error.message)
-			// toast.error(error.response.data.message || "Login failed");
+			toast.error(error.response.data.message || "Login failed");
 		}
 	},
 	logout: async () => {
 		set({ isLoggingOut: true });
 		try {
-			await axios.post("http://localhost:3000/api/v1/auth/logout");
+			await axios.post("http://localhost:5000/api/v1/auth/logout");
 			set({ user: null, isLoggingOut: false });
 			toast.success("Logged out successfully");
 		} catch (error) {
@@ -50,7 +50,7 @@ export const useAuthStore = create((set) => ({
 		
 		set({ isCheckingAuth: true });
 		try {
-			const response = await axios.get("http://localhost:3000/api/v1/auth/authcheck");
+			const response = await axios.get("http://localhost:5000/api/v1/auth/authcheck");
 
 			set({ user: response.data.user, isCheckingAuth: false });
 		} catch (error) {
