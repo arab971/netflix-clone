@@ -11,7 +11,6 @@ export async function SignUp(req, res) {
         .status(400)
         .json({ success: false, message: "All fields are required" });
     }
-    console.log(`Searching for user with email: ${email}`);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
@@ -61,7 +60,6 @@ export async function SignUp(req, res) {
       .status(201)
       .json({ success: true, user: { ...newUser._doc, password: "" } });
   } catch (error) {
-    console.log("Error in signup controller", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
@@ -76,7 +74,6 @@ export async function Login(req, res) {
     }
     const user = await User.findOne({ email: email });
     if (!user) {
-      console.log(`User not found with email: ${email}`);
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
@@ -90,7 +87,6 @@ export async function Login(req, res) {
     generateToken(User._id, res);
     res.status(200).json({ success: true, user: user });
     } catch (error) {
-    console.error("Error in login controller", error.message);
     res.status(500).json({ success: false, message: error.message });
   }
 }
@@ -101,7 +97,6 @@ export async function LogOut(req, res) {
    res.clearCookie("netflix_cookie");
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
-    console.log("Error in logout controller", error.message);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
@@ -113,7 +108,6 @@ try {
   }
   res.status(200).json({ success: true, user});
 } catch (error) {
-  console.log("error in authcheck controller", error.message);
   res.status(500).json({ success: false, message: "Internal server error" });
 }
 }

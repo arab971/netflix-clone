@@ -27,7 +27,6 @@ const WatchPage = () => {
 			try {
 				const res = await axios.get(`http://localhost:5000/api/v1/${contentType}/${id}/trailers`);
 				setTrailers(res.data.trailers);
-                console.log(trailers)
 			} catch (error) {
 				if (error.message.includes("404")) {
 					setTrailers([]);
@@ -40,7 +39,7 @@ const WatchPage = () => {
 	useEffect(() => {
 		const getSimilarContent = async () => {
 			try {
-				const res = await axios.get(`http://localhost:3000/api/v1/${contentType}/${id}/similar`);
+				const res = await axios.get(`http://localhost:5000/api/v1/${contentType}/${id}/similar`);
 				setSimilarContent(res.data.similar);
 			} catch (error) {
 				if (error.message.includes("404")) {

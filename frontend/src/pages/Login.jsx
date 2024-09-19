@@ -8,7 +8,6 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault()
     login({email,password})
-    // console.log(email, password)
   }
   return (
     <>

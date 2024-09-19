@@ -10,7 +10,6 @@ export async function getTrendingTv  (req, res) {
       data.results[Math.floor(Math.random() * data.results?.length)];
     res.status(200).json({ success: true, content: randomMovie });
   } catch (error) {
-    console.error(error.message);
     res.status(500).json({ success: false, content: error.message });
   }
 };
@@ -57,7 +56,6 @@ export async function getTvCategory(req, res) {
 		res.status(200).json({ success: true, content: data.results });
     
 	} catch (error) {
-    console.log(error.message)
 		 res.status(500).json({ success: false, message: "Internal Server Error" });
 	}
 }

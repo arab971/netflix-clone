@@ -30,7 +30,6 @@ export const useAuthStore = create((set) => ({
 			set({ user: response.data.user, isLoggingIn: false });
 		} catch (error) {
 			set({ isLoggingIn: false, user: null });
-			console.log(error.message)
 			toast.error(error.response.data.message || "Login failed");
 		}
 	},
@@ -53,9 +52,9 @@ export const useAuthStore = create((set) => ({
 			const response = await axios.get("http://localhost:5000/api/v1/auth/authcheck");
 
 			set({ user: response.data.user, isCheckingAuth: false });
+		// eslint-disable-next-line no-unused-vars
 		} catch (error) {
 			set({ isCheckingAuth: false, user: null });
-			console.log(error.message)
 		}
 	},
 }));

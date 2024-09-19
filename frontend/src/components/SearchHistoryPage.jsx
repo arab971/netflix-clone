@@ -63,12 +63,9 @@ const SearchHistoryPage = () => {
       if (response.status !== 200) {
         throw new Error(`Delete request failed with status code ${response.status}`);
     }
-    console.log("Before state update:", searchHistory); // Add this line for debugging
  
       toast.success("Search item deleted successfully");
       setSearchHistory(searchHistory.filter((item) => item.id !== entry.id));
-      console.log("After state update:", searchHistory); // Add this line for debugging
-      console.log("Error response:", response); // Log the entire response object
     } catch (error) {
       toast.error("Failed to delete search item:");
       console.log(error.message)
