@@ -86,7 +86,7 @@ export async function Login(req, res) {
     }
     generateToken(User._id, res);
     res.status(200).json({ success: true, user: user });
-    } catch (error) {
+  } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 }
@@ -94,20 +94,23 @@ export async function Login(req, res) {
 export async function LogOut(req, res) {
   // Implement logout functionality here
   try {
-   res.clearCookie("netflix_cookie");
+    res.clearCookie("netflix_cookie");
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
 export async function authCheck(req, res) {
-try {
-  const user = await User.findOne(req.user.id).select("-password");
-  if (!user) {
-    return res.status(404).json({ success: false, message: "User not found" });
+  try {
+    const user = await User.findOne(req.User._id).select("-password");
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
-  res.status(200).json({ success: true, user});
-} catch (error) {
-  res.status(500).json({ success: false, message: "Internal server error" });
-}
 }

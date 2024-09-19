@@ -26,7 +26,7 @@ export const useAuthStore = create((set) => ({
 		try {
 			const response = await axios.post("http://localhost:5000/api/v1/auth/login", credentials);
 			const token = response.data.token;
-			localStorage.setItem("authToken", token);
+			localStorage.setItem("netflix_cookie", token);
 			set({ user: response.data.user, isLoggingIn: false });
 		} catch (error) {
 			set({ isLoggingIn: false, user: null });
