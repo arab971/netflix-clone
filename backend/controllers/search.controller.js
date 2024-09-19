@@ -96,7 +96,7 @@ export async function deletesearchhistory(req, res) {
 	id = parseInt(id);
 
 	try {
-		await User.findOneAndUpdate(req.userId, {
+		await User.findByIdAndDelete(req.userId, {
 			$pull: {
 				searchHistory: { id: id },
 			},

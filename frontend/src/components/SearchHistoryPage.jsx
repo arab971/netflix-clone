@@ -65,7 +65,7 @@ const SearchHistoryPage = () => {
     }
  
       toast.success("Search item deleted successfully");
-      setSearchHistory(searchHistory.filter((item) => item.id !== entry.id));
+      setSearchHistory(searchHistory.filter(item => item.id !== entry.id));
     } catch (error) {
       toast.error("Failed to delete search item:");
       console.log(error.message)
